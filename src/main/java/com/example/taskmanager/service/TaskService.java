@@ -28,7 +28,7 @@ public class TaskService {
     }
 
     public List<Task>  getAllTasks() {
-        return tasks;
+        return new ArrayList<>(tasks);
     }
 
     public void completeTask(int taskId) {
@@ -69,4 +69,12 @@ public class TaskService {
 
         return pending;
     }
+
+    public void updateTaskDescription(int taskId, String newDescription) {
+        Task task = findTaskById(taskId);
+        if (task != null) {
+            task.setDescription(newDescription);
+        }
+    }
+
 }

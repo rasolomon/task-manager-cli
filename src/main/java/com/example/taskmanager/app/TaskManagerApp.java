@@ -29,27 +29,18 @@ public class TaskManagerApp {
         taskService.completeTask(t4.getId());
         printTasks(tasks);
 
-        /*
-        System.out.println("Removing Evens:");
-        taskService.removeTask(t2.getId());
-        taskService.removeTask(t4.getId());
-        printTasks(tasks);
-        */
-
-        System.out.println("Printing All Tasks");
-        printTasks(tasks);
-
+        // Print original Task 3
         System.out.println("Finding Task 3:");
         Task theThird = taskService.findTaskById(t3.getId());
-        System.out.println("Task 3: " + theThird);
+        System.out.println("Task 3 Before: " + theThird);
 
-        System.out.println("Printing All Completed Tasks");
-        List<Task> completedTasks = taskService.getCompletedTasks();
-        printTasks(completedTasks);
+        // Modify Task 3
+        taskService.updateTaskDescription(theThird.getId(), "Task Three's Brand New Description!!!!");
 
-        System.out.println("Printing All Pending Tasks");
-        List<Task> pendingTasks = taskService.getPendingTasks();
-        printTasks(pendingTasks);
+        // Print updated Task 3
+        System.out.println("Task 3 After: " + theThird);
+
+
     }
 
     private static void printTasks(List<Task> tasks) {
