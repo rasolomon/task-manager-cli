@@ -40,6 +40,12 @@ public class TaskManagerApp {
         // Print updated Task 3
         System.out.println("Task 3 After: " + theThird);
 
+        // Print completed tasks
+        List<Task> completedTasks = taskService .getCompletedTasks();
+        printTasks(completedTasks);
+
+
+
 
     }
 

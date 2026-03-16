@@ -4,10 +4,11 @@ import com.example.taskmanager.model.Task;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 public class TaskService {
 
-    private List<Task> tasks = new ArrayList<>();
+    private final List<Task> tasks = new ArrayList<>();
 
     public void addTask(Task task ) {
         tasks.add(task);
@@ -40,23 +41,15 @@ public class TaskService {
     }
 
     public Task findTaskById(int taskId) {
-        for (Task task : tasks) {
-            if (task.getId() == taskId) {
-                return task;
-            }
-        }
-        return null;
+        return tasks.stream()
+                .filter(task -> task.getId() == taskId)
+                .findFirst()
+                .orElse(null);
     }
     public List<Task> getCompletedTasks() {
-        List<Task> completed = new ArrayList<>();
-
-        for (Task task : tasks) {
-            if (task.isCompleted()) {
-                completed.add(task);
-            }
-        }
-
-        return completed;
+        return tasks.stream()
+                .filter(Task::isCompleted)
+                .toList();
     }
     public List<Task> getPendingTasks() {
         List<Task> pending = new ArrayList<>();
