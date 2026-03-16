@@ -20,14 +20,13 @@ public class TaskManagerApp {
         taskService.addTask(t3);
         taskService.addTask(t4);
 
-        List<Task> tasks = taskService .getAllTasks();
         System.out.println("START:");
-        printTasks(tasks);
+        printTasks(taskService.getAllTasks());
 
         System.out.println("Completing Evens:");
         taskService.completeTask(t2.getId());
         taskService.completeTask(t4.getId());
-        printTasks(tasks);
+        printTasks(taskService.getAllTasks());
 
         // Print original Task 3
         System.out.println("Finding Task 3:");
@@ -44,14 +43,20 @@ public class TaskManagerApp {
         List<Task> completedTasks = taskService .getCompletedTasks();
         printTasks(completedTasks);
 
+        // Print pending tasks
+        List<Task> pendingTasks = taskService .getPendingTasks();
+        printTasks(pendingTasks);
 
-
-
+        // Remove Task 4
+        taskService.removeTask(t4.getId());
+        // Print completed tasks
+        completedTasks = taskService .getCompletedTasks();
+        printTasks(completedTasks);
     }
 
     private static void printTasks(List<Task> tasks) {
         for (Task task : tasks) {
-            System.out.println(task.getDescription() + ": Completed? " + task.isCompleted());
+            System.out.println(task);
         }
     }
 }

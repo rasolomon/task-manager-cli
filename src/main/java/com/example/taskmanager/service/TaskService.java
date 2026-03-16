@@ -4,7 +4,6 @@ import com.example.taskmanager.model.Task;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 public class TaskService {
 
@@ -15,17 +14,7 @@ public class TaskService {
     }
 
     public void removeTask(int taskId) {
-
-        Iterator<Task> iterator = tasks.iterator();
-
-        while (iterator.hasNext()) {
-            Task task = iterator.next();
-
-            if (task.getId() == taskId) {
-                iterator.remove();
-                break;
-            }
-        }
+        tasks.removeIf(task -> task.getId() == taskId);
     }
 
     public List<Task>  getAllTasks() {
@@ -33,10 +22,9 @@ public class TaskService {
     }
 
     public void completeTask(int taskId) {
-        for (Task task : tasks) {
-            if (task.getId() == taskId) {
-                task.markCompleted();
-            }
+        Task task = findTaskById(taskId);
+        if (task != null) {
+            task.markCompleted();
         }
     }
 
@@ -52,15 +40,9 @@ public class TaskService {
                 .toList();
     }
     public List<Task> getPendingTasks() {
-        List<Task> pending = new ArrayList<>();
-
-        for (Task task : tasks) {
-            if (!task.isCompleted()) {
-                pending.add(task);
-            }
-        }
-
-        return pending;
+        return tasks.stream()
+                .filter(task -> !task.isCompleted())
+                .toList();
     }
 
     public void updateTaskDescription(int taskId, String newDescription) {
