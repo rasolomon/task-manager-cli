@@ -1,8 +1,7 @@
-package com.example.taskmanager.service;
+package com.example.taskmanager.service.service;
 
-import com.example.taskmanager.model.Task;
+import com.example.taskmanager.service.model.Task;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class TaskService {

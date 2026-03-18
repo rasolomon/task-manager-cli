@@ -1,4 +1,4 @@
-package com.example.taskmanager.model;
+package com.example.taskmanager.service.model;
 
 public class Task {
     private int id;
