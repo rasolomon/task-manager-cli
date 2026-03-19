@@ -3,6 +3,7 @@ package com.example.taskmanager.service.service;
 import com.example.taskmanager.service.model.Task;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TaskService {
 
@@ -26,7 +27,14 @@ public class TaskService {
             task.markCompleted();
         }
     }
+    /* DO TOMORROW
+    public Optional<Task> findTaskById(int taskId) {
+        return tasks.stream()
+                .filter(task -> task.getId() == taskId)
+                .findFirst();
+    }
 
+     */
     public Task findTaskById(int taskId) {
         return tasks.stream()
                 .filter(task -> task.getId() == taskId)

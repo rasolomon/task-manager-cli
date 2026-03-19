@@ -30,11 +30,13 @@ public class TaskManagerApp {
 
         // Print original Task 3
         System.out.println("Finding Task 3:");
+        //        Optional<Task> theThird = taskService.findTaskById(t3.getId());
         Task theThird = taskService.findTaskById(t3.getId());
         System.out.println("Task 3 Before: " + theThird);
 
         // Modify Task 3
         taskService.updateTaskDescription(theThird.getId(), "Task Three's Brand New Description!!!!");
+        //        theThird.ifPresent(task -> taskService.updateTaskDescription(task.getId(), "Task Three's Brand New Description!!!!"));
 
         // Print updated Task 3
         System.out.println("Task 3 After: " + theThird);
