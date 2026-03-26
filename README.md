@@ -1,2 +1,2 @@
 # task-manager-cli
-Command-line Task Manager application built in Java with unit tests, input validation, and basic CRUD functionality.
+Java-based command-line Task Manager demonstrating object-oriented design, input validation, exception handling, unit testing, and CRUD operations.
